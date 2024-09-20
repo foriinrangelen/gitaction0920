@@ -5,9 +5,9 @@ on:
   # pull_request:  # pull request가 생성될 때마다 실행
   #   branches:
   #     - main  # main 브랜치에 대한 PR에 대해 실행
-  push:  # push 이벤트가 발생할 때마다 실행
+  push:  # push 이벤트가 발생할 때마다 실행, 트리거설정?
     branches:
-      - main  # main 브랜치에 대한 push 이벤트에 대해 실행
+      - main  # main 브랜치에 대한 push 이벤트에 대해 실행, * 는 모든 branch
     # paths: paths는 GitHub Actions의 워크플로우에서 특정 파일이나 디렉터리에 대한 변경 사항이 있을 때만 해당 워크플로우를 실행하도록 지정하는 데 사용
 
 jobs:
@@ -21,8 +21,8 @@ jobs:
     steps:
     - name: Checkout repository (코드 복사)  # 코드 체크아웃 단계
       uses: actions/checkout@v2  # GitHub 리포지토리의 코드를 체크아웃,리포지토리의 코드를 GitHub Actions 워크플로우에서 사용할 수 있도록 체크아웃(복사)하는 기능을 제공
-
-    - name: Set up Node.js ${{ matrix.node-version }} (노드 버전 셋팅)  # Node.js 설정 단계
+      # @v2 : github action에서 제공하는 checkout기능의 버전
+    - name: Set up Node.js ${{ matrix.node-version }} (노드 버전 세팅)  # Node.js 설정 단계
       uses: actions/setup-node@v2  # Node.js 환경 설정
       with:
         node-version: ${{ matrix.node-version }}  # 매트릭스에서 정의한 Node.js 버전 사용
