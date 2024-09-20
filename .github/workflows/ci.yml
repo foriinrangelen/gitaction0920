@@ -7,7 +7,7 @@ on:
       - main  # main 브랜치에 대한 PR에 대해 실행
 
 jobs:
-  테스트 이름:  # 작업 이름
+  test_name:  # 작업 이름
     runs-on: ubuntu-latest  # 작업을 실행할 환경
 
     strategy:
