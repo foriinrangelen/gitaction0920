@@ -9,6 +9,7 @@ const client = new Client({
   port: 5432,         // 포트 (기본값: 5432)
 });
 
+
 async function connectAndQuery() {
   try {
     // 데이터베이스에 연결
