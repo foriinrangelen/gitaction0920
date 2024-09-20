@@ -16,18 +16,18 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16, 17, 18, 19, 20]  # 사용할 Node.js 버전 (예: 16)
+        node-version: [16, 18, 20]  # 사용할 Node.js 버전 (예: 16)
 
     steps:
-    - name: Checkout repository (코드 복사)  # 코드 체크아웃 단계
+    - name: 1. Checkout repository (코드 복사)  # 코드 체크아웃 단계
       uses: actions/checkout@v2  # GitHub 리포지토리의 코드를 체크아웃,리포지토리의 코드를 GitHub Actions 워크플로우에서 사용할 수 있도록 체크아웃(복사)하는 기능을 제공
       # @v2 : github action에서 제공하는 checkout기능의 버전
-    - name: Set up Node.js ${{ matrix.node-version }} (노드 버전 세팅)  # Node.js 설정 단계
+    - name: 2. Set up Node.js ${{ matrix.node-version }} (노드 버전 세팅)  # Node.js 설정 단계
       uses: actions/setup-node@v2  # Node.js 환경 설정
       with:
         node-version: ${{ matrix.node-version }}  # 매트릭스에서 정의한 Node.js 버전 사용
 
-    - name: npm캐시 사용하기  # npm 의존성 캐시 단계
+    - name: 3. npm캐시 사용하기  # npm 의존성 캐시 단계
       uses: actions/cache@v3  # 캐시 액션 사용
       with:
         path: ~/.npm  # npm 캐시 경로
@@ -35,8 +35,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-npm-  # 키가 없을 때 사용할 기본 키
           
-    - name: 의존성 설치  # 의존성 설치 단계
+    - name: 4. 의존성 설치  # 의존성 설치 단계
       run: npm ci  # npm을 사용하여 의존성 설치
 
-    - name: 테스트 실행  # 테스트 실행 단계
+    - name: 5. 테스트 실행  # 테스트 실행 단계
       run: npm test  # npm 테스트 명령어로 테스트 실행
