@@ -7,7 +7,7 @@ on:
       - main  # main 브랜치에 대한 PR에 대해 실행
 
 jobs:
-  build:  # 작업 이름
+  테스트 이름:  # 작업 이름
     runs-on: ubuntu-latest  # 작업을 실행할 환경
 
     strategy:
@@ -23,10 +23,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}  # 매트릭스에서 정의한 Node.js 버전 사용
 
-    - name: Install dependencies  # 의존성 설치 단계
-      run: |
-        npm install  # npm을 사용하여 의존성 설치
+    - name: 의존성 설치  # 의존성 설치 단계
+      run: npm install  # npm을 사용하여 의존성 설치
 
-    - name: Run tests  # 테스트 실행 단계
-      run: |
-        npm test  # npm 테스트 명령어로 테스트 실행
+    - name: 테스트 실행  # 테스트 실행 단계
+      run: npm test  # npm 테스트 명령어로 테스트 실행
