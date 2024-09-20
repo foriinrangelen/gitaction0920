@@ -50,7 +50,7 @@ jobs:
           ${{ runner.os }}-npm-  # 키가 없을 때 사용할 기본 키
 
     - name: 의존성 설치  # 의존성 설치 단계
-      run: npm install  # npm을 사용하여 의존성 설치
+      run: npm ci  # npm을 사용하여 의존성 설치
 
     - name: 테스트 실행  # 테스트 실행 단계
       run: npm test  # npm 테스트 명령어로 테스트 실행

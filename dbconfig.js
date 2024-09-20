@@ -15,12 +15,8 @@ async function connectAndQuery() {
     // 데이터베이스에 연결
     await client.connect();
     console.log('PostgreSQL에 연결되었습니다.');
-
-    // 쿼리 실행
-    const res = await client.query('SELECT NOW()');
-    console.log('현재 시간:', res.rows[0]);
-
-    return res.rows[0]; // 결과를 반환
+    
+    return "DB연결 성공"
   } catch (err) {
     console.error('오류 발생:', err);
     throw err; // 오류를 발생시킴
