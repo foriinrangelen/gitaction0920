@@ -1,0 +1,32 @@
+# .github/workflows/ci.yml
+name: Node.js CI  # CI의 이름
+
+on:
+  pull_request:  # pull request가 생성될 때마다 실행
+    branches:
+      - main  # main 브랜치에 대한 PR에 대해 실행
+
+jobs:
+  build:  # 작업 이름
+    runs-on: ubuntu-latest  # 작업을 실행할 환경
+
+    strategy:
+      matrix:
+        node-version: [20]  # 사용할 Node.js 버전 (예: 16)
+
+    steps:
+    - name: Checkout repository  # 코드 체크아웃 단계
+      uses: actions/checkout@v2  # GitHub 리포지토리의 코드를 체크아웃,리포지토리의 코드를 GitHub Actions 워크플로우에서 사용할 수 있도록 체크아웃(복사)하는 기능을 제공
+
+    - name: Set up Node.js ${{ matrix.node-version }}  # Node.js 설정 단계
+      uses: actions/setup-node@v2  # Node.js 환경 설정
+      with:
+        node-version: ${{ matrix.node-version }}  # 매트릭스에서 정의한 Node.js 버전 사용
+
+    - name: Install dependencies  # 의존성 설치 단계
+      run: |
+        npm install  # npm을 사용하여 의존성 설치
+
+    - name: Run tests  # 테스트 실행 단계
+      run: |
+        npm test  # npm 테스트 명령어로 테스트 실행
